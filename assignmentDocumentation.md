@@ -17,6 +17,10 @@ I am desiging and creating this because of a problem that a friend of mine ran i
 
 
 ## Key Design Decisions
+![InitialDesign](static/img/readme/initialDesign.PNG)
+
+Initial Design for application, designed on bootstrap studio 5.
+
 
 ### Database Design
 
