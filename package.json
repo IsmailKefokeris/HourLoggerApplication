@@ -17,8 +17,6 @@
   },
   "homepage": "https://github.com/IsmailKefokeris/HourLoggerApplication#readme",
   "dependencies": {
-    "mongodb": "^4.3.0",
-    "nodemon": "^2.0.15",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "chalk": "^4.1.0",
@@ -28,6 +26,8 @@
     "express-session": "^1.17.2",
     "loading-cli": "^1.1.0",
     "md5": "^2.3.0",
-    "mongoose": "^5.10.10"
+    "mongodb": "^4.3.0",
+    "mongoose": "^5.10.10",
+    "nodemon": "^2.0.15"
   }
 }

@@ -15,3 +15,17 @@ app.set("view engine", "ejs");
 const { PORT, MONGODB_URI } = process.env;
 
 
+app.get("/", (req, res) => {
+    res.render("home");
+});
+
+
+
+
+
+
+app.listen(PORT, () => {
+    console.log(
+      `Hour Logger App Live at: http://localhost:${PORT}`
+    );
+});
