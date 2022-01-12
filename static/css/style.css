@@ -1,0 +1,29 @@
+/* Home Page Styling */
+
+/* Job Select Button */
+
+.btn.btn-primary{
+    background: rgb(255,255,255);
+    color: rgb(0,0,0);
+    border-color: rgb(0,0,0);
+}
+
+.btn.btn-primary:hover{
+    background: rgb(174,181,188);
+    color: rgb(0, 0, 0);
+    border-color: rgb(0,0,0);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

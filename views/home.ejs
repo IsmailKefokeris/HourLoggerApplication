@@ -6,12 +6,53 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Hour Logger Application</title>
     </head>
-    
+
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
 
     <body>
         <%- include('common/header'); -%>
-        
+        <!-- Dropdown menu allowing the user to select which job to view hours done
+        once selected a table will be generated with the date and hours logged for that job -->
+        <section style="padding: 50px;"></section>
+
+        <div class="dropdown" style="margin: 0px;text-align: center;">
+
+            <button class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="">Dropdown </button>
+
+            <div class="dropdown-menu" style="transform: translate(525px);border-color: var(--bs-gray-900);">
+                <a class="dropdown-item" href="#" style="text-align: center;">Job 1</a>
+                <a class="dropdown-item" href="#" style="text-align: center;">Job 2</a>
+                <a class="dropdown-item" href="#" style="text-align: center;">Job 3</a>
+            </div>
+        </div>
+
+        <section style="padding: 25px;"></section>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Hours Worked</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>01/01/2022</td>
+                    <td>17:00</td>
+                    <td>22:00</td>
+                    <td>5 hours</td>
+                </tr>
+                <tr>
+                    <td>12/01/2022<br /></td>
+                    <td>17:00<br /></td>
+                    <td>22:00</td>
+                    <td>5 hours</td>
+                </tr>
+            </tbody>
+        </table>
     </body>
 
 

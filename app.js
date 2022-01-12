@@ -11,6 +11,8 @@ const expressSession = require("express-session");
 const app = express();
 app.set("view engine", "ejs");
 
+app.use(express.static(__dirname + '/static'));
+
 // Setting our Port and mongoDB location through .env
 const { PORT, MONGODB_URI } = process.env;
 

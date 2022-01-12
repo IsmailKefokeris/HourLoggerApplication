@@ -20,6 +20,13 @@ I am desiging and creating this because of a problem that a friend of mine ran i
 
 ### Database Design
 
+There will be a Job Object which will contain information about the job
+
+Tracker object which will contain information about the time worked and what job it belongs to
+
+
+
+
 ### Security and Scalability
 
 
