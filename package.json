@@ -1,0 +1,33 @@
+{
+  "name": "hourloggerapplication",
+  "version": "1.0.0",
+  "description": "Node.JS hour logger application",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IsmailKefokeris/HourLoggerApplication.git"
+  },
+  "author": "Ismail Kefokeris",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IsmailKefokeris/HourLoggerApplication/issues"
+  },
+  "homepage": "https://github.com/IsmailKefokeris/HourLoggerApplication#readme",
+  "dependencies": {
+    "mongodb": "^4.3.0",
+    "nodemon": "^2.0.15",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "chalk": "^4.1.0",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "loading-cli": "^1.1.0",
+    "md5": "^2.3.0",
+    "mongoose": "^5.10.10"
+  }
+}
