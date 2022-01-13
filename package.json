@@ -4,7 +4,9 @@
   "description": "Node.JS hour logger application",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "seedProduction": "cross-env NODE_ENV=production node initDatabase.js",
+    "seed": "node initDatabase.js"
   },
   "repository": {
     "type": "git",
