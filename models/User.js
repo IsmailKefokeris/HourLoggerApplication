@@ -19,7 +19,7 @@ const userSchema = new Schema(
 
 userSchema.pre("save", async function (next) {
     // Logging
-    console.log(this.password);
+    console.log(`Password unencrypted: ${this.password}`);
 
     try {
         const hash = await bcrypt.hash(this.password, 10);

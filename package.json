@@ -4,9 +4,10 @@
   "description": "Node.JS hour logger application",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon app.js",
+    "dev": "cross-env NODE_ENV=development nodemon app.js",
+    "start": "cross-env NODE_ENV=production node app.js",
     "seedProduction": "cross-env NODE_ENV=production node initDatabase.js",
-    "seed": "node initDatabase.js"
+    "seed": "cross-env NODE_ENV=development node initDatabase.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "chalk": "^4.1.0",
+    "cross-env": "^7.0.3",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
@@ -30,6 +32,7 @@
     "md5": "^2.3.0",
     "mongodb": "^4.3.0",
     "mongoose": "^5.10.10",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "uuid": "^8.3.2"
   }
 }

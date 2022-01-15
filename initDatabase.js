@@ -26,7 +26,7 @@ async function main() {
 
         const load = loading("Setting up Database").start();
 
-
+        
 
 
 

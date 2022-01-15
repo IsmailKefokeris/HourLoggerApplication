@@ -17,6 +17,14 @@
         once selected a table will be generated with the date and hours logged for that job -->
         <section style="padding: 50px;"></section>
 
+        <% if (message) {   %> 
+            <div class="row justify-content-md-center">
+              <div class="alert alert-primary" role="alert">
+                    <%= message %>
+              </div>
+            </div>
+        <% } %>
+
         <div class="dropdown" style="margin: 0px;text-align: center;">
 
             <button class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">Dropdown </button>

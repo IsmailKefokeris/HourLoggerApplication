@@ -1,3 +1,22 @@
+/* Root */
+
+:root {
+    
+    --bs-gray: #6c757d;
+    --bs-gray-dark: #343a40;
+    --bs-gray-100: #f8f9fa;
+    --bs-gray-200: #e9ecef;
+    --bs-gray-300: #dee2e6;
+    --bs-gray-400: #ced4da;
+    --bs-gray-500: #adb5bd;
+    --bs-gray-600: #6c757d;
+    --bs-gray-700: #495057;
+    --bs-gray-800: #343a40;
+    --bs-gray-900: #212529;
+    scroll-behavior: smooth;
+}
+    
+
 /* Home Page Styling */
 
 /* Job Select Button */
@@ -14,7 +33,17 @@
     border-color: rgb(0,0,0);
 }
 
+/* Login page */
 
+.login-clean {
+    background: #f1f7fc;
+    padding: 80px 0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+  
+  
 
 
 
