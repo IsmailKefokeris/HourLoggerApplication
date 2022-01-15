@@ -80,7 +80,9 @@ app.get("/logout", (req, res) => {
   res.redirect("/");
 });
 
-
+app.get("/create-job", (req, res) => {
+  res.render("create-job");
+});
 
 
 
