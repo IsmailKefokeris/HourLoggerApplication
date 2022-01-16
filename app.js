@@ -10,6 +10,7 @@ const crypto = require("crypto");
 // Controllers
 const homeController = require("./controllers/home");
 const userController = require("./controllers/user");
+const jobController = require("./controllers/job");
 
 // Models
 
@@ -53,36 +54,50 @@ app.use("*", async (req, res, next) => {
   next();
 });
 
+// Creating Authentication Middleware
+
+const authMiddleware = async (req, res, next) => {
+  const user = await User.findById(req.session.userID);
+  if (!user) {
+    return res.render("home", {message: "Log in to create a new Job!"});
+  }
+  next()
+}
+
 // console.log(`LOGGING: ${crypto.randomUUID()}`);
 
-// @desc:     Home page
-// @route:    GET /
-app.get("/", (req, res) => {
-  res.render("home", {message: `WELCOME`});
-});
+// Home Page
+app.get("/", homeController.list);
 
+app.get("/view/:id", authMiddleware, homeController.view);
+
+// Login Page
 app.get("/login", (req, res) => {
   res.render("login", {errors: {}});
 });
 
 app.post("/login", userController.login);
 
-
+// Register Page
 app.get("/register", (req, res) => {
   res.render("register", {errors: {}});
 });
 
 app.post("/register", userController.register);
 
+// Logout Button
 app.get("/logout", (req, res) => {
   req.session.destroy();
   global.user = false;
   res.redirect("/");
 });
 
-app.get("/create-job", (req, res) => {
-  res.render("create-job");
+// Create job Page
+app.get("/create-job", authMiddleware, (req, res) => {
+  res.render("create-job", {errors: {}});
 });
+
+app.post("/create-job", authMiddleware, jobController.create);
 
 
 
