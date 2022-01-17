@@ -13,6 +13,7 @@ exports.create = async (req, res) => {
         const date = req.body.date;
         const startTime = req.body.startTime;
         const endTime = req.body.endTime;
+        const jobs = await Job.find({ user: req.session.userID })
 
         console.log(`user: ${user}, jobName: ${jobName}, date: ${date}, startTime: ${startTime}, endTime: ${endTime}`);
 
@@ -35,27 +36,30 @@ exports.create = async (req, res) => {
         if(difference < 0){
             difference = difference * -1
         }
-        console.log("duration: "+difference);
+        // console.log("duration: "+difference);
        
+        if(req.body.jobName !== "null"){
+            console.log(`creating Tracker for Job: ${req.body.jobName}`)
 
-        console.log(`creating Tracker for Job: ${req.body.jobName}`)
-
-        await Tracker.create({
-            date: req.body.date,
-            startTime: req.body.startTime,
-            endTime: req.body.endTime,
-            totalHours: difference,
-            job: req.body.jobName,
-            user: req.session.userID
-        })
-    
-        res.redirect("/");
-        return;
-
+            await Tracker.create({
+                date: req.body.date,
+                startTime: req.body.startTime,
+                endTime: req.body.endTime,
+                totalHours: difference,
+                job: req.body.jobName,
+                user: req.session.userID
+            })
+            res.redirect("/");
+            return;
+        }else{
+            res.render('create-tracker', { errors: {message: "Unable to use this job. Please Create a new Job"}, maxDate: null, jobs: jobs });
+            return;
+        }
+        
     } catch(e) {
         console.log(e)
         if (e.errors) {
-            res.render('create-tracker', { errors: e.errors, maxDate: dateCombined, jobs: null })
+            res.render('create-tracker', { errors: e, maxDate: null, jobs: [] })
             return;
         }
         return res.status(400).send({
@@ -107,3 +111,7 @@ exports.list = async (req, res) => {
         });
     }
 };
+
+exports.edit = async (req, res) => {
+    res.redirect("/");
+}

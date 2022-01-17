@@ -24,7 +24,7 @@ exports.register = async (req, res) => {
             password: password
         })
 
-        res.render('home', {message: "USER HAS BEEN CREATED YOU CAN NOW LOGIN", trackers: [], jobs: [] })
+        res.render('home', {message: "USER HAS BEEN CREATED YOU CAN NOW LOGIN", trackers: [], totalHours: 0, jobs: [] })
     } catch (e){
         console.log(e)
         if (e.errors) {
@@ -57,7 +57,7 @@ exports.login = async (req, res) => {
             return;
         }
         
-        res.render("login", { errors: { password: { message: "Password Incorrect" }}, message: message})
+        res.render("login", { errors: { password: { message: "Password Incorrect" }}})
     } catch(e) {
         return res.status(400).send({
             message: JSON.parse(e),

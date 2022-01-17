@@ -34,7 +34,7 @@ const { PORT, MONGODB_URI } = process.env;
 
 // Connecting to Database
 
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connection.on("error", (err) => {
   console.error(err);
   console.log(
@@ -44,7 +44,7 @@ mongoose.connection.on("error", (err) => {
   process.exit();
 });
 
-app.use(expressSession({ secret: `${crypto.randomUUID()}`, cookie: { expires: new Date(253402300000000) } }))
+app.use(expressSession({ secret: `${crypto.randomUUID()}`, cookie: { expires: new Date(253402300000000) }, resave: true, saveUninitialized: true }))
 
 // Creating a Global variable (User)
 global.user = false;
@@ -61,7 +61,7 @@ app.use("*", async (req, res, next) => {
 const authMiddleware = async (req, res, next) => {
   const user = await User.findById(req.session.userID);
   if (!user) {
-    return res.render("home", {message: "You must be Logged in to do this!", jobs: [], trackers: []});
+    return res.render("home", {message: "You must be Logged in to do this!", jobs: [], trackers: [], totalHours: 0});
   }
   next()
 }
@@ -72,6 +72,9 @@ const authMiddleware = async (req, res, next) => {
 app.get("/", homeController.list);
 
 app.get("/view/:id", authMiddleware, homeController.view);
+
+app.get("/edit/:id", authMiddleware, trackerController.edit);
+
 
 // Login Page
 app.get("/login", (req, res) => {
@@ -107,7 +110,7 @@ app.get("/test", (req, res) => {
 
 app.get("/create-tracker", authMiddleware, trackerController.list);
 
-app.post("/create-tracker", trackerController.create);
+app.post("/create-tracker", authMiddleware, trackerController.create);
 
 
 

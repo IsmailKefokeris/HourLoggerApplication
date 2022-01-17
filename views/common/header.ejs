@@ -12,8 +12,18 @@
       <li class="nav-item"> <a class="nav-link" href="#"> Pricing </a> </li>
 
       <% if(user) { %>
-        <a class="nav-link" href="/create-job"> Add Job </a>
-        <a class="nav-link" href="/logout"> <%= user.email %> --Logout-- </a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= user.email %>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/create-job">Add Job</a>
+            <a class="dropdown-item" href="/create-tracker">Track Hours</a>
+            <a class="dropdown-item" href="/view-stats">View Stats</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/logout">--Logout--</a>
+          </div>
+        </li>
       <% } %>
       <% if(!user) { %>
         <li class="nav-item"> <a class="nav-link" href="/login"> Login/Register </a></li>

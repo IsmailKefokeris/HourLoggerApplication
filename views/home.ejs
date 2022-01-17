@@ -50,6 +50,7 @@
                     <th>Start Time</th>
                     <th>End Time</th>
                     <th>Hours Worked</th>
+                    <th>Edit/Remove</th>
                 </tr>
             </thead>
             <tbody>
@@ -60,6 +61,9 @@
                             <td><%= tracker.startTime %></td>
                             <td><%= tracker.endTime %></td>
                             <td><%= tracker.totalHours %></td>
+                            <td>
+                                <button type="button" class="btn btn-secondary" href="/edit/<%= tracker._id %>">EDIT/REMOVE</button>
+                            </td>
                         </tr>
                     <% }); %>
                 <% } else { %>

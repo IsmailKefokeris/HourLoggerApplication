@@ -11,11 +11,11 @@
     </head>
     <body>
         <%- include('common/header'); -%>
-
+        <% if (errors) {%>
+            <h2><%= errors.message %></h2>
+        <% }%>
         <section class="login-clean">
-            <% if (errors) {%>
-                <h2><%= errors %></h2>
-            <% } %>
+             
             <form method="post" action="/create-tracker">
                 <h2 class="visually-hidden">Create new work entry!</h2>
                 <div class="mb-3">
@@ -30,7 +30,7 @@
                                 <option value="<%= job.id %>"><%= job.name %></option>
                             <% }); %>
                         <% } else { %>
-                            <option>New Job needs to be created!</option>
+                            <option disabled value="null">New Job needs to be created!</option>
                         <% } %>
                     </select>
                 </div>
