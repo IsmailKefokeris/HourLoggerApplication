@@ -11,6 +11,8 @@ const crypto = require("crypto");
 const homeController = require("./controllers/home");
 const userController = require("./controllers/user");
 const jobController = require("./controllers/job");
+const trackerController = require("./controllers/tracker");
+
 
 // Models
 
@@ -59,7 +61,7 @@ app.use("*", async (req, res, next) => {
 const authMiddleware = async (req, res, next) => {
   const user = await User.findById(req.session.userID);
   if (!user) {
-    return res.render("home", {message: "Log in to create a new Job!"});
+    return res.render("home", {message: "You must be Logged in to do this!", jobs: []});
   }
   next()
 }
@@ -99,7 +101,16 @@ app.get("/create-job", authMiddleware, (req, res) => {
 
 app.post("/create-job", authMiddleware, jobController.create);
 
+app.get("/test", (req, res) => {
+  var theBigDay = new Date();
+  theBigDay.setHours(17, 60);
+  console.log(theBigDay);
 
+});
+
+app.get("/create-tracker", authMiddleware, trackerController.list);
+
+app.post("/create-tracker", trackerController.create);
 
 
 
