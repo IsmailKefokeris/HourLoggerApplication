@@ -4,9 +4,10 @@ const { Schema } = mongoose;
 
 const trackerSchema = new Schema(
     {
-        date: {type: Date, required: [true, "Date Required"]},
+        date: {type: String, required: [true, "Date Required"]},
         startTime: {type: String, required: [true, "Start Time Required"]},
         endTime: {type: String, required: [true, "End Time Required"]},
+        totalHours: {type: Number},
         job: {type: String, required: [true, "Job Required"]},
         user: {type: String, required: true}
     },

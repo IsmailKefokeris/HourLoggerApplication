@@ -24,7 +24,7 @@ exports.register = async (req, res) => {
             password: password
         })
 
-        res.render('home', {message: "USER HAS BEEN CREATED YOU CAN NOW LOGIN" })
+        res.render('home', {message: "USER HAS BEEN CREATED YOU CAN NOW LOGIN", trackers: [], jobs: [] })
     } catch (e){
         console.log(e)
         if (e.errors) {
@@ -53,7 +53,7 @@ exports.login = async (req, res) => {
         if (match) {
             req.session.userID = user._id;
             console.log(`User authenticated! - ${req.session.userID}`);
-            res.redirect('/')
+            res.redirect('/');
             return;
         }
         

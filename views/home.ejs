@@ -53,19 +53,37 @@
                 </tr>
             </thead>
             <tbody>
-
-                <tr>
-                    <td>01/01/2022</td>
-                    <td>17:00</td>
-                    <td>22:00</td>
-                    <td>5 hours</td>
-                </tr>
-                <tr>
-                    <td>12/01/2022<br /></td>
-                    <td>17:00<br /></td>
-                    <td>22:00</td>
-                    <td>5 hours</td>
-                </tr>
+                <% if (trackers.length > 0) { %>
+                    <% trackers.forEach(tracker => { %>
+                        <tr>
+                            <td><%= tracker.date %></td>
+                            <td><%= tracker.startTime %></td>
+                            <td><%= tracker.endTime %></td>
+                            <td><%= tracker.totalHours %></td>
+                        </tr>
+                    <% }); %>
+                <% } else { %>
+                    <tr>
+                        <td>Example!</td>
+                        <td>Example!</td>
+                        <td>Example!</td>
+                        <td>Example!</td>
+                    </tr>
+                    <tr>
+                        <td>12/01/2022</td>
+                        <td>17:00</td>
+                        <td>22:00</td>
+                        <td>5 hours</td>
+                    </tr>
+                <% } %>
+                <% if (trackers.length > 0) { %>
+                    <tr>
+                        <td>Total Hours</td>
+                        <td></td>
+                        <td></td>
+                        <td><%= totalHours %></td>
+                    </tr>
+                <% } %>
             </tbody>
         </table>
     </body>

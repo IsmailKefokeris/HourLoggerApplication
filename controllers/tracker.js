@@ -16,16 +16,35 @@ exports.create = async (req, res) => {
 
         console.log(`user: ${user}, jobName: ${jobName}, date: ${date}, startTime: ${startTime}, endTime: ${endTime}`);
 
-
         if(!req.body.jobName){
             console.log("Unable to find Job");
         }
-        console.log(`creating Tracker for Job: ${req.body.jobName}`) 
+
+        // Calculating Total Hours Worked
+        let currDate = new Date();
+        let month = currDate.getMonth()+1;
+        let day = currDate.getDate();
+        let year = currDate.getFullYear();
+
+        currDate = `${month}/${day}/${year}`;
+
+        let timeStart = new Date(currDate + " " + startTime).getHours();
+        let timeEnd = new Date(currDate + " " + endTime).getHours();
+
+        let difference = timeEnd - timeStart;
+        if(difference < 0){
+            difference = difference * -1
+        }
+        console.log("duration: "+difference);
+       
+
+        console.log(`creating Tracker for Job: ${req.body.jobName}`)
 
         await Tracker.create({
             date: req.body.date,
             startTime: req.body.startTime,
             endTime: req.body.endTime,
+            totalHours: difference,
             job: req.body.jobName,
             user: req.session.userID
         })

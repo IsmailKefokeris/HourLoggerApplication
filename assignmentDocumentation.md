@@ -14,6 +14,19 @@ I am desiging and creating this because of a problem that a friend of mine ran i
 
 ## System Overview
 
+__The System contains the following features:__
+   - Allows the user to register.
+   - Allows the user to Login, saving their data.
+   - Calculates amount earned daily, weekly, and monthly.
+   - Allows the user to input/edit/update/delete the day they worked. (Tracker Object)
+   - Allows the user to add/edit/update/delete multiple Jobs to their account. (Job Object)
+
+__Completed Features__
+
+   [] Registering new account
+   [] Ability to Login to account
+   [] Create a new Job
+   [] Create a tracker object linked to a Job
 
 
 ## Key Design Decisions
@@ -24,11 +37,18 @@ Initial Design for application, designed on bootstrap studio 5.
 
 ### Database Design
 
+The Database will contain three collections:
+   - User: Stores User Data
+   - Tracker: Stores tracking data for each day worked
+   - Job: Stores Data from the Job worked
+
+__User Object__
+
+__Job Object__
 There will be a Job Object which will contain information about the job
 
+__Tracker__
 Tracker object which will contain information about the time worked and what job it belongs to
-
-
 
 
 ### Security and Scalability
@@ -36,3 +56,4 @@ Tracker object which will contain information about the time worked and what job
 
 
 ## Conclusion and Reflection
+https://stackoverflow.com/questions/21554603/calculate-duration-between-two-date-times-in-javascript

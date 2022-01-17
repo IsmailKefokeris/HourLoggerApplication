@@ -27,7 +27,7 @@
                     <select multiple class="form-control" id="exampleFormControlSelect2" name="jobName">
                         <% if(jobs.length > 0) { %>
                             <% jobs.forEach(job => { %>
-                                <option><%= job.name %></option>
+                                <option value="<%= job.id %>"><%= job.name %></option>
                             <% }); %>
                         <% } else { %>
                             <option>New Job needs to be created!</option>

@@ -14,22 +14,37 @@ exports.list = async (req, res) => {
     const user = await User.findById(req.session.userID);
     // console.log(user)
     if (!user) {
-        res.render("home", {message: "Login to get started", jobs: []});
+        res.render("home", {message: "Login to get started", jobs: [], trackers: [], totalHours: 0});
         return;
     }
 
     const jobs = await Job.find({ user: req.session.userID })
     // console.log(`Jobs ${jobs}`);
-    res.render("home", {message: `WELCOME ${user.email}`, jobs: jobs});
+    res.render("home", {message: `WELCOME ${user.email}`, jobs: jobs, trackers: [], totalHours: 0});
     return;
 }
 
 exports.view = async (req, res) => {
-    const id = req.param.id;
+    const id = req.params["id"];
 
+    console.log(id);
+    
     try {
-        const trackers = await Tracker.find({});
-    } catch (e) {
+        const trackers = await Tracker.aggregate([
+            { $match: {job: id}}
+        ]);
+        // console.log(`Trackers: ${trackers}`)
+        let total = 0;
 
+        trackers.forEach(tracker => {
+            total += tracker.totalHours;
+        })
+
+        // console.log(total);
+        const jobs = await Job.find({ user: req.session.userID })
+        res.render("home", {message: `WELCOME ${user.email}`, jobs: jobs, trackers: trackers, totalHours: total});
+        return;
+    } catch (e) {
+        console.log(`ERROR: ${e}`);
     }
 }
