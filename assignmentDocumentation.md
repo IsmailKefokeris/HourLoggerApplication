@@ -42,14 +42,64 @@ The Database will contain three collections:
    - Tracker: Stores tracking data for each day worked
    - Job: Stores Data from the Job worked
 
-__User Object__
+#### __User Object__
+The User Object will contain  information from users who have registered on the website.
 
-__Job Object__
-There will be a Job Object which will contain information about the job
+__Model:__
+   ```js
+   const userSchema = new Schema(
+      {
+         email: {
+               type: String,
+               required: [ true, "Email is required" ],
+               unique: true},
+         password: {
+               type: String,
+               required: [ true, "Password is required" ]}
+      },
+      {
+         timestamps: true
+      }
+   );
+   ```
+The User Object will store The Email and Password of the user. For security reasons the password will not be stored plain but will go through
+a hashing process using "bcrypt"
+   ```js
+   const hash = await bcrypt.hash(this.password, 10);
+   ```
+#### __Job Object__
+The Job Object will contain information about the jobs that have been added to the website.
 
-__Tracker__
-Tracker object which will contain information about the time worked and what job it belongs to
+__Model:__
+   ```js
+   const jobSchema = new Schema(
+      {
+        name: {type: String, required: [true, "Job Title/Name Required"]},
+        rate: {type: Number, required: [true, "Job Hourly Rate Required"]},
+        user: {type: String, required: true}
+      },
+      { timestamps: true }
+   );
+   ```
 
+
+#### __Tracker Object__
+The Tracker object will contain information about the time worked and what job it belongs to.
+
+__Model:__
+   ```js
+   const trackerSchema = new Schema(
+      {
+         date: {type: String, required: [true, "Date Required"]},
+         startTime: {type: String, required: [true, "Start Time Required"]},
+         endTime: {type: String, required: [true, "End Time Required"]},
+         totalHours: {type: Number},
+         job: {type: String, required: [true, "Job Required"]},
+         user: {type: String, required: true}
+      },
+      { timestamps: true }
+   );
+   ```
 
 ### Security and Scalability
 
@@ -57,4 +107,7 @@ Passwords not stored but hashed and the hashed versions are stored.
 
 
 ## Conclusion and Reflection
+
+### Issues Encountered
+
 https://stackoverflow.com/questions/21554603/calculate-duration-between-two-date-times-in-javascript

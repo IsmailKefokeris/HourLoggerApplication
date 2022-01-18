@@ -95,7 +95,7 @@ app.get("/register", (req, res) => {
 
 app.post("/register", userController.register);
 
-// Logout Button
+// Logout 
 app.get("/logout", (req, res) => {
   req.session.destroy();
   global.user = false;
@@ -109,13 +109,20 @@ app.get("/create-job", authMiddleware, (req, res) => {
 
 app.post("/create-job", authMiddleware, jobController.create);
 
-app.get("/test", (req, res) => {
-  res.send("A TESTING ROUTE");
-});
+// app.get("/test", (req, res) => {
+//   res.send("A TESTING ROUTE");
+// });
 
+// Create Tracker Page
 app.get("/create-tracker", authMiddleware, trackerController.list);
 
 app.post("/create-tracker", authMiddleware, trackerController.create);
+
+// View User Stats Page
+
+app.get("/view-stats", (req, res) => {
+  res.render("user-stats");
+});
 
 
 
