@@ -5,9 +5,10 @@
   "main": "app.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon app.js",
-    "start": "cross-env NODE_ENV=production node app.js",
-    "seedProduction": "cross-env NODE_ENV=production node initDatabase.js",
-    "seed": "cross-env NODE_ENV=development node initDatabase.js"
+    "start": "cross-env NODE_ENV=production node app.js"
+  },
+  "engines": {
+    "node": "15.x"
   },
   "repository": {
     "type": "git",
