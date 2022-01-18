@@ -4,6 +4,7 @@ const Job = require("../models/Job");
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const bcrypt = require("bcrypt");
+const { findByIdAndUpdate } = require("../models/User");
 
 
 exports.create = async (req, res) => {
@@ -113,5 +114,144 @@ exports.list = async (req, res) => {
 };
 
 exports.edit = async (req, res) => {
-    res.redirect("/");
+    const trackerID = req.params["id"];
+
+    try {
+        console.log(`Looking for Tracker object with ID: ${trackerID}`);
+        const trackerObject = await Tracker.findById(trackerID);
+        console.log(`Tracker Object: ${trackerObject}`);
+
+        console.log(`Looking for the Job connected to the Tracker Object: ${trackerObject._id}`);
+
+        const curJob = await Job.findById(trackerObject.job);
+
+        // Finding the current date the page was opened to help us create a maxdate that the users can go up to
+        console.log(`Finding max Date allowable for the date section in Tracker`);
+        const curDate = Date.now();
+        const maxDate = new Date(curDate);
+        const month = maxDate.getUTCMonth() + 1;
+        let dateCombined;
+        if (month < 10){
+            dateCombined = `${maxDate.getFullYear()}-0${month}-${maxDate.getDate()}`;
+            // console.log(`Single Digit month: ${dateCombined}`);
+        }else{
+            dateCombined = `${maxDate.getFullYear()}-${month}-${maxDate.getDate()}`;
+            // console.log(`Double Digit month: ${dateCombined}`);
+        }
+        const user = await User.findById(req.session.userID)
+        console.log(`Looking for Jobs associated with User: ${user.email}`);
+        const jobs = await Job.find({ user: req.session.userID });
+
+
+        res.render('edit-tracker', {errors: {}, maxDate: dateCombined, jobs: jobs, tracker: trackerObject, curJob: curJob});
+        return;
+    } catch (e){
+        console.log(e)
+        if (e.errors) {
+            res.render('edit-tracker', { errors: e.errors, maxDate: "", jobs: [], tracker: {}, curJob: ""})
+            return;
+        }
+        return res.status(400).send({
+            message: e.message,
+        });
+    }
+};
+
+exports.update = async (req, res) => {
+    console.log(`!!!UPDATING TRACKER OBJECT!!!`);
+
+    try {
+        const objectID = req.params["id"];
+        const jobID = req.body.jobName;
+        const date = req.body.date;
+        const startTime = req.body.startTime;
+        const endTime = req.body.endTime;
+        const user = req.session.userID;
+
+        console.log(`ObjectID: ${objectID}, jobID: ${jobID}, date: ${date}, startTime: ${startTime}, endTime: ${endTime}`);
+
+        // Calculating Total Hours Worked
+        console.log(`calculating Total Hours Worked`);
+        let currDate = new Date();
+        let month = currDate.getMonth()+1;
+        let day = currDate.getDate();
+        let year = currDate.getFullYear();
+
+        currDate = `${month}/${day}/${year}`;
+
+        let timeStart = new Date(currDate + " " + startTime).getHours();
+        let timeEnd = new Date(currDate + " " + endTime).getHours();
+
+        let difference = timeEnd - timeStart;
+        if(difference < 0){
+            difference = difference * -1
+        }
+        console.log(`Total Hours Worked: ${difference}`);
+        
+        const trackerObject = await Tracker.findById(objectID);
+
+        console.log(`Attempting to find Tracker Object and update with new values`);
+        // console.log(`TRACKER OBJECT: ${trackerObject}`);
+
+        // await Tracker.findOneAndUpdate(trackerObject, { 
+        //     date: date, 
+        //     startTime: startTime, 
+        //     endTime: endTime, 
+        //     totalHours: difference, 
+        //     job: jobID,
+        //     user: user
+        // }, {new: true} ,(error, data) => {
+        //     if(error){
+        //         console.log(`Error Updating Record: ${error}`);
+        //     } else {
+        //         console.log(`Record Updated: ${data}`);
+        //     }
+        // })
+
+        await Tracker.findByIdAndUpdate(objectID, {
+            date: date, 
+            startTime: startTime, 
+            endTime: endTime, 
+            totalHours: difference, 
+            job: jobID,
+            user: user
+        }, {new: true} ,(error, data) => {
+            if(error){
+                console.log(`Error Updating Record: ${error}`);
+            } else {
+                console.log(`Record Updated: ${data}`);
+            }
+        })
+
+        console.log(`Update Compelete!`);
+
+        res.redirect("/?message=taster has been updated");        
+    } catch (e){
+        console.log(e)
+        if (e.errors) {
+            res.render('edit-tracker', { errors: e.errors, maxDate: "", jobs: [], tracker: {}, curJob: ""})
+            return;
+        }
+        return res.status(400).send({
+            message: e.message,
+        });
+    }
+}
+
+exports.delete = async (req, res) => {
+    const trackerID = req.params["id"];
+
+    try {
+        console.log(`Attempting to Delete Tracker: ${trackerID}`);
+
+        await Tracker.findByIdAndRemove(trackerID);
+        console.log(`Tracker: ${trackerID} Deleted!`);
+        res.redirect("/");
+    } catch (e) {
+        console.log(`Deletion of Tracker: ${trackerID} Failed`);
+        res.status(404).send({
+            message: e.message,
+        });
+    }
+    // console.log(trackerID);
 }

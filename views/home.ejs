@@ -46,46 +46,60 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Date</th>
-                    <th>Start Time</th>
-                    <th>End Time</th>
-                    <th>Hours Worked</th>
-                    <th>Edit/Remove</th>
+                    <th class="text-center">Date</th>
+                    <th class="text-center">Start Time</th>
+                    <th class="text-center">End Time</th>
+                    <th class="text-center">Hours Worked</th>
+                    <th class="text-center">Edit/Remove</th>
                 </tr>
             </thead>
             <tbody>
                 <% if (trackers.length > 0) { %>
                     <% trackers.forEach(tracker => { %>
                         <tr>
-                            <td><%= tracker.date %></td>
-                            <td><%= tracker.startTime %></td>
-                            <td><%= tracker.endTime %></td>
-                            <td><%= tracker.totalHours %></td>
-                            <td>
-                                <button type="button" class="btn btn-secondary" href="/edit/<%= tracker._id %>">EDIT/REMOVE</button>
+                            <td class="text-center"><%= tracker.date %></td>
+                            <td class="text-center"><%= tracker.startTime %></td>
+                            <td class="text-center"><%= tracker.endTime %></td>
+                            <td class="text-center"><%= tracker.totalHours %></td>
+                            <td class="text-center">
+                                <a href="/edit/<%= tracker._id %>" class='btn btn-secondary btn-xs'>
+                                  Edit
+                                </a> 
+                                <a  href="/delete/<%= tracker._id %>" class="btn btn-danger btn-xs">
+                                  Remove
+                                </a>
                             </td>
                         </tr>
                     <% }); %>
                 <% } else { %>
                     <tr>
-                        <td>Example!</td>
-                        <td>Example!</td>
-                        <td>Example!</td>
-                        <td>Example!</td>
+                        <td class="text-center">Example!</td>
+                        <td class="text-center">Example!</td>
+                        <td class="text-center">Example!</td>
+                        <td class="text-center">Example!</td>
+                        <td class="text-center">Example!</td>
                     </tr>
                     <tr>
-                        <td>12/01/2022</td>
-                        <td>17:00</td>
-                        <td>22:00</td>
-                        <td>5 hours</td>
+                        <td class="text-center">12/01/2022</td>
+                        <td class="text-center">17:00</td>
+                        <td class="text-center">22:00</td>
+                        <td class="text-center">5 hours</td>
+                        <td class="text-center">
+                            <a href="/>" class='btn btn-secondary btn-xs'>
+                              Edit
+                            </a> 
+                            <a  href="/" class="btn btn-danger btn-xs">
+                              Remove
+                            </a>
+                        </td>
                     </tr>
                 <% } %>
                 <% if (trackers.length > 0) { %>
                     <tr>
-                        <td>Total Hours</td>
+                        <td class="text-center">Total Hours</td>
                         <td></td>
                         <td></td>
-                        <td><%= totalHours %></td>
+                        <td class="text-center"><%= totalHours %></td>
                     </tr>
                 <% } %>
             </tbody>

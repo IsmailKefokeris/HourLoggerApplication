@@ -53,6 +53,7 @@ Tracker object which will contain information about the time worked and what job
 
 ### Security and Scalability
 
+Passwords not stored but hashed and the hashed versions are stored.
 
 
 ## Conclusion and Reflection

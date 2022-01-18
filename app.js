@@ -34,7 +34,7 @@ const { PORT, MONGODB_URI } = process.env;
 
 // Connecting to Database
 
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
 mongoose.connection.on("error", (err) => {
   console.error(err);
   console.log(
@@ -74,6 +74,11 @@ app.get("/", homeController.list);
 app.get("/view/:id", authMiddleware, homeController.view);
 
 app.get("/edit/:id", authMiddleware, trackerController.edit);
+app.post("/update-tracker/:id", authMiddleware, trackerController.update);
+
+
+app.get("/delete/:id", authMiddleware, trackerController.delete);
+
 
 
 // Login Page
