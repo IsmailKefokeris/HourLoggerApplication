@@ -13,9 +13,11 @@ const userController = require("./controllers/user");
 const jobController = require("./controllers/job");
 const trackerController = require("./controllers/tracker");
 
+// API
+const homeApiController = require("./controllers/api/home");
+
 
 // Models
-
 const User = require("./models/User");
 
 
@@ -79,6 +81,8 @@ app.post("/update-tracker/:id", authMiddleware, trackerController.update);
 
 app.get("/delete/:id", authMiddleware, trackerController.delete);
 
+app.get("/api/view", homeApiController.view);
+
 
 
 // Login Page
@@ -109,9 +113,6 @@ app.get("/create-job", authMiddleware, (req, res) => {
 
 app.post("/create-job", authMiddleware, jobController.create);
 
-// app.get("/test", (req, res) => {
-//   res.send("A TESTING ROUTE");
-// });
 
 // Create Tracker Page
 app.get("/create-tracker", authMiddleware, trackerController.list);
