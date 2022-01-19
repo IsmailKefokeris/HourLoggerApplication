@@ -81,7 +81,7 @@ app.post("/update-tracker/:id", authMiddleware, trackerController.update);
 
 app.get("/delete/:id", authMiddleware, trackerController.delete);
 
-app.get("/api/view", homeApiController.view);
+app.get("/api/view", authMiddleware, homeApiController.view);
 
 
 

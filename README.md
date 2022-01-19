@@ -17,6 +17,7 @@ It is hosted on [Heroku](https://www.heroku.com)
 - ejs
 - dotenv
 - nodemon
+- AJAX
 
 ## Getting Started - Dev
 

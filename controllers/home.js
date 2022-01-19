@@ -22,6 +22,8 @@ exports.list = async (req, res) => {
     return;
 }
 
+
+// Old Used before Implementing AJAX - New can bew found in api/home.js 
 exports.view = async (req, res) => {
     const id = req.params["id"];
     let message = "";
