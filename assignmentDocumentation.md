@@ -56,6 +56,9 @@ The User will after logging in have a drop down menu of options from which they 
 The Home page will also be updated with information for the user to go through. <br>
 ![Logged In User Drop Down Page](static/img/readme/homepageLoggedIn.PNG)
 
+After logging into the site they will be able to access their stats page to view their total pay for the week, month, or all time. Additionally they will be able to view a list of all jobs added to the site.
+![Logged In User Drop Down Page](static/img/readme/ViewStats.PNG)
+
 ## Key Design Decisions
 
 ![InitialDesign](static/img/readme/initialDesign.PNG)
