@@ -12,6 +12,8 @@ const homeController = require("./controllers/home");
 const userController = require("./controllers/user");
 const jobController = require("./controllers/job");
 const trackerController = require("./controllers/tracker");
+const statsController = require("./controllers/stats");
+
 
 // API
 const homeApiController = require("./controllers/api/home");
@@ -121,9 +123,7 @@ app.post("/create-tracker", authMiddleware, trackerController.create);
 
 // View User Stats Page
 
-app.get("/view-stats", (req, res) => {
-  res.render("user-stats");
-});
+app.get("/view-stats", authMiddleware, statsController.renderPage);
 
 
 

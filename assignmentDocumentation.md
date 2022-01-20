@@ -138,6 +138,8 @@ Another element added to the application was the ability to allow users to still
 
 In conclusion COM519 Assignment - Hour Logger Application has completed all the mandatory requirements (CRUD). The application has implemented 
 a few industry standard components such as, not storing plain text passwords, avoiding client side validation (HTML) and instead have database and server side validation, using serverless infrastructure allowing for scalability. There are parts which I would need to work on implementing AJAX in more places around the application to make the website more dynamic and less static and clunky. Working a little more on the front end wouldnt hurt as it is plain and unappealing.
+
+My project files are messy and I wish I had a better way to organise them this may be a point to go research after the project.
 ### Issues Encountered
 
 __Issue 1:__ Updating Database Object, I ran into some issues when attempting to update the Tracker Database object using the findByIDandUpdate() function, still not exactly sure why it wasnt able to find my object through the ID but I got my updating function working by using findOneAndUpdate()
@@ -147,4 +149,4 @@ __Issue 2:__ Calculating the total amount of hours worked. This was an issue I w
 
 __Issue 3:__ Negative numbers would be returned to me when calculating the difference sometimes, this was likely due to the ending time being a larger number than the starting time, to fix this I simply multiplied the difference by -1.
 
-https://stackoverflow.com/questions/21554603/calculate-duration-between-two-date-times-in-javascript
+For most issues I was able to find solutions on websites such as stackoverflow, MongoDB Documentation, Mongoose Documentation, and other documentation for the technologies used.

@@ -11,8 +11,57 @@
     </head>
     <body>
         <%- include('common/header'); -%>
+        <section style="padding: 25px;"></section>
+        <section style="padding: 25px;"></section>
 
-        
+        <div class="card" style="width: 18rem; margin-left: auto;">
+            <div class="card-body text-center">
+              <h5 class="card-title"><%= user.email %></h5>
+              <a href="#" class="btn btn-secondary ">Update User Details</a>
+              <br><br>
+              <a href="#" class="btn btn-danger ">Delete Account!</a>
+            </div>
+        </div>
+
+
+        <section style="padding: 25px;"></section>
+        <section style="padding: 25px;"></section>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="text-center">ID</th>
+                    <th class="text-center">Job Name</th>
+                    <th class="text-center">Rate (£)</th>
+                </tr>
+            </thead>
+            <tbody id="trackerItems">
+                <% if (jobs.length > 0) { %>
+                    <% jobs.forEach(job => { %>
+                        <tr>
+                            <td class="text-center"><%= job._id %></td>
+                            <td class="text-center"><%= job.name %></td>
+                            <td class="text-center"><%= job.rate %></td>
+                            <td class="text-center">
+                                <a href="/edit/<%= job._id %>" class='btn btn-secondary btn-xs'>
+                                  Edit
+                                </a> 
+                                <a  href="/delete/<%= job._id %>" class="btn btn-danger btn-xs">
+                                  Remove
+                                </a>
+                            </td>
+                        </tr>
+                    <% }); %>
+                <% } else { %>
+                    <tr>
+                        <td class="text-center">NO</td>
+                        <td class="text-center">Jobs</td>
+                        <td class="text-center">Found</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+
     </body>
     
     <script type="text/javascript" src="scripts/jobSelector.js"></script>
