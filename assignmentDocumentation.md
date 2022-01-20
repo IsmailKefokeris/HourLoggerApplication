@@ -23,10 +23,14 @@ __The System contains the following features:__
 
 __Completed Features__
 
-   [] Registering new account
-   [] Ability to Login to account
-   [] Create a new Job
-   [] Create a tracker object linked to a Job
+- [x] Registering new account
+- [x] Ability to Login to account
+- [x] Create a new Job
+- [x] Create a tracker object linked to a Job & User account
+- [x] Modify Tracker object
+- [ ] Modify Job object
+- [ ] Modify User object
+- [ ] View User Stats (income all time, weekly, monthly)
 
 The System will present the user with the home page showing an example of what the page will look like after you fill out your details
 and sign in. Before the user is able to interact with the website they must first sign in, doing so will give them more options such as 
@@ -140,6 +144,8 @@ In conclusion, COM519 Assignment - Hour Logger Application has completed all the
 a few industry standard components such as, not storing plain text passwords, avoiding client side validation (HTML) and instead have database and server side validation, using serverless infrastructure allowing for scalability. There are parts which I would need to work on implementing AJAX in more places around the application to make the website more dynamic and less static and clunky. Working a little more on the front end wouldnt hurt as it is plain and unappealing.
 
 My project files are disorganised- upon reflection, I have determined that the management of my files in future should be less haphazard. This may be a point to research after the project.
+
+For the future I would like to continue developing this project, making it more stable and functional. I would like to implement the missing functions such as seeing total earnings for all time, week, and month. Additionally I would like to make the application look more appealing and have the ability to adjust depending on what kind of screen size is being used to access it.
 ### Issues Encountered
 
 __Issue 1:__ Updating Database Object, I ran into some issues when attempting to update the Tracker Database object using the findByIDandUpdate() function. I am still unsure why it wasn't able to find my object through the ID but I got my updating function working by using findOneAndUpdate()
