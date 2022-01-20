@@ -5,12 +5,12 @@
 
 
 ## Introduction
-The assessment tasked me to create, test, and deploy, a proof of concept data-driven full stack web-application. I was handed
+I have been tasked to create, test, and deploy, a proof of concept data-driven full stack web-application. I was handed
 the option to either make sense of existing data or solve a problem in my work or social life. I have chosen the latter. I will
 be creating and designing a time logging app which will allow individual users to sign in and log hours worked from their job 
-(indipendently from the company).
+(indipendently from the company). The application must also have CRUD implemented to show my understanding.
 
-I am desiging and creating this because of a problem that a friend of mine ran into recently, they were paid after a months work but werent sure if they were paid the full correct amount, we painstakingly counted the days back tallying all the hours she had worked to figure out what they were owed. If only there were a tool easy to use and access that could have prevented this situation or atleast helped us in tallying.
+I am desiging and creating this because of a problem I ran into recently, I was paid after a month of work at a new job, I wasnt sure if the amount that was handed to me was correct. To double check I had to painstakingly count back all the days worked and tally the hours for each day. Finally I found that I was underpaid and had to relay the amount owed to my manager. If there were a tool I had access to that could have prevented this situation or, at least made it easier to tally, much of my time could have been saved.
 
 ## System Overview
 
@@ -136,17 +136,19 @@ Another element added to the application was the ability to allow users to still
 
 ## Conclusion and Reflection
 
-In conclusion COM519 Assignment - Hour Logger Application has completed all the mandatory requirements (CRUD). The application has implemented 
+In conclusion, COM519 Assignment - Hour Logger Application has completed all the mandatory requirements (CRUD). The application has implemented 
 a few industry standard components such as, not storing plain text passwords, avoiding client side validation (HTML) and instead have database and server side validation, using serverless infrastructure allowing for scalability. There are parts which I would need to work on implementing AJAX in more places around the application to make the website more dynamic and less static and clunky. Working a little more on the front end wouldnt hurt as it is plain and unappealing.
 
-My project files are messy and I wish I had a better way to organise them this may be a point to go research after the project.
+My project files are disorganised- upon reflection, I have determined that the management of my files in future should be less haphazard. This may be a point to research after the project.
 ### Issues Encountered
 
-__Issue 1:__ Updating Database Object, I ran into some issues when attempting to update the Tracker Database object using the findByIDandUpdate() function, still not exactly sure why it wasnt able to find my object through the ID but I got my updating function working by using findOneAndUpdate()
-instead and just passing the Object to find to it.
+__Issue 1:__ Updating Database Object, I ran into some issues when attempting to update the Tracker Database object using the findByIDandUpdate() function. I am still unsure why it wasn't able to find my object through the ID but I got my updating function working by using findOneAndUpdate()
+instead and just passing the Object to find it.
 
 __Issue 2:__ Calculating the total amount of hours worked. This was an issue I was stuck on for a little while as I couldnt figure out how to calculate the hours inbetween two time periods for a 24 hour clock effectively. Even with my current solution of converting the time it into a dateTime object, getting the hours, then deducting the endTime from the Start there are still a few issues, for instance it will only calculate in whole hours so you wont have double variables. 
 
 __Issue 3:__ Negative numbers would be returned to me when calculating the difference sometimes, this was likely due to the ending time being a larger number than the starting time, to fix this I simply multiplied the difference by -1.
+
+__Issue 4:__ Updating total earnings on the view stats page. I was unable to update the total earnings in time for the submit, if I were to attempt it again I know I would need to use aggregation to multiply the rates and the total hours stored in the database.
 
 For most issues I was able to find solutions on websites such as stackoverflow, MongoDB Documentation, Mongoose Documentation, and other documentation for the technologies used.
