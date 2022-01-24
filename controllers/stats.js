@@ -12,12 +12,12 @@ exports.renderPage = async (req, res) => {
         const trackers = await Tracker.find({ user: userID });
         const user = await User.findById(userID);
         var totalEarned = 0.0;
-        let weekEarned = 0.0;
+        let totalDaysWorked = trackers.length;
         let monthEarned = 0.0;
 
         // console.log(jobs);
 
-        res.render("user-stats", {jobs: jobs,  user: user, totalEarned: totalEarned, weekEarned: weekEarned, monthEarned: monthEarned});
+        res.render("user-stats", {jobs: jobs,  user: user, totalEarned: totalEarned, totalDaysWorked: totalDaysWorked, monthEarned: monthEarned});
     } catch (e) {
         console.log(`ERROR: ${e}`);
     }

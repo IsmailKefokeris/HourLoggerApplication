@@ -30,10 +30,28 @@ exports.create = async (req, res) => {
 
         currDate = `${month}/${day}/${year}`;
 
-        let timeStart = new Date(currDate + " " + startTime).getHours();
-        let timeEnd = new Date(currDate + " " + endTime).getHours();
+        // Old method of calculating the Time worked
+        // let timeStart = new Date(currDate + " " + startTime).getHours();
+        // let timeEnd = new Date(currDate + " " + endTime).getHours();
 
-        let difference = timeEnd - timeStart;
+        // let difference = timeEnd - timeStart;
+        // if(difference < 0){
+        //     difference = difference * -1
+        // }
+
+        // New Method for calculating hours worked
+        let timeStartHours = new Date(currDate + " " + startTime).getHours();
+        let timeStartMinutes = new Date(currDate + " " + startTime).getUTCMinutes();
+        console.log(parseFloat(timeStartHours + "." + timeStartMinutes).toFixed(2));
+        // Joining the minutes and hours together creating a double number to give a more accurate difference between the two times.
+        let timeStart = parseFloat(timeStartHours + "." + timeStartMinutes).toFixed(2);
+
+        let timeEndHours = new Date(currDate + " " + endTime).getHours();
+        let timeEndMinutes = new Date(currDate + " " + endTime).getUTCMinutes();
+        console.log(parseFloat(timeEndHours + "." + timeEndMinutes).toFixed(2));
+        let timeEnd = parseFloat(timeEndHours + "." + timeEndMinutes).toFixed(2);
+
+        let difference = (timeEnd - timeStart).toFixed(2);
         if(difference < 0){
             difference = difference * -1
         }
@@ -179,13 +197,32 @@ exports.update = async (req, res) => {
 
         currDate = `${month}/${day}/${year}`;
 
-        let timeStart = new Date(currDate + " " + startTime).getHours();
-        let timeEnd = new Date(currDate + " " + endTime).getHours();
+        // Old method of calculating the Time worked
+        // let timeStart = new Date(currDate + " " + startTime).getHours();
+        // let timeEnd = new Date(currDate + " " + endTime).getHours();
 
-        let difference = timeEnd - timeStart;
+        // let difference = timeEnd - timeStart;
+        // if(difference < 0){
+        //     difference = difference * -1
+        // }
+
+        // New Method for calculating hours worked
+        let timeStartHours = new Date(currDate + " " + startTime).getHours();
+        let timeStartMinutes = new Date(currDate + " " + startTime).getUTCMinutes();
+        console.log(parseFloat(timeStartHours + "." + timeStartMinutes).toFixed(2));
+        // Joining the minutes and hours together creating a double number to give a more accurate difference between the two times.
+        let timeStart = parseFloat(timeStartHours + "." + timeStartMinutes).toFixed(2);
+
+        let timeEndHours = new Date(currDate + " " + endTime).getHours();
+        let timeEndMinutes = new Date(currDate + " " + endTime).getUTCMinutes();
+        console.log(parseFloat(timeEndHours + "." + timeEndMinutes).toFixed(2));
+        let timeEnd = parseFloat(timeEndHours + "." + timeEndMinutes).toFixed(2);
+
+        let difference = (timeEnd - timeStart).toFixed(2);
         if(difference < 0){
             difference = difference * -1
         }
+        
         console.log(`Total Hours Worked: ${difference}`);
         
         const trackerObject = await Tracker.findById(objectID);
