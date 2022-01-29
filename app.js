@@ -125,34 +125,15 @@ app.post("/create-tracker", authMiddleware, trackerController.create);
 
 app.get("/view-stats", authMiddleware, statsController.renderPage);
 
+// View Features Page
+
+app.get("/features", (req, res) => {
+  res.render("features");
+});
+
+
 app.get("/test", (req, res) => {
-
-  let currDate = new Date();
-  let month = currDate.getMonth()+1;
-  let day = currDate.getDate();
-  let year = currDate.getFullYear();
-
-  currDate = `${month}/${day}/${year}`;
-
-  const startTime = "17:22";
-  const endTime = "22:30";
-
-  let timeStartHours = new Date(currDate + " " + startTime).getHours();
-  let timeStartMinutes = new Date(currDate + " " + startTime).getUTCMinutes();
-  console.log(parseFloat(timeStartHours + "." + timeStartMinutes).toFixed(2));
-  let timeStart = parseFloat(timeStartHours + "." + timeStartMinutes).toFixed(2);
-
-  let timeEndHours = new Date(currDate + " " + endTime).getHours();
-  let timeEndMinutes = new Date(currDate + " " + endTime).getUTCMinutes();
-  console.log(parseFloat(timeEndHours + "." + timeEndMinutes).toFixed(2));
-  let timeEnd = parseFloat(timeEndHours + "." + timeEndMinutes).toFixed(2);
-
-  let difference = (timeEnd - timeStart).toFixed(2);
-  if(difference < 0){
-      difference = difference * -1
-  }
-
-  console.log(`${timeStart} - ${timeEnd} = ${difference}`);
+  res.send("TEST PAGE!");
 })
 
 app.listen(PORT, () => {
